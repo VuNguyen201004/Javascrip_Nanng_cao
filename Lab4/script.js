@@ -147,8 +147,6 @@ const formatCur = function (value, locale, currency) {
   }).format(value);
 };
 
-// LEC 8)
-// const printMovements = function(movements) {
 const printMovements = function (account, sort = false) {
   containerMovements.innerHTML = '';
 
@@ -166,24 +164,8 @@ const printMovements = function (account, sort = false) {
 
       // LEC 9)
       printDate = formatMovementDate(date, account.locale);
-      // const day = `${date.getDate()}`.padStart(2, '0');
-      // // Remember that MONTHS are 0-based!
-      // const month = `${date.getMonth() + 1}`.padStart(2, '0');
-      // const year = date.getFullYear();
-      // printDate = `${day}/${month}/${year}`;
     }
-
-    // LEC 14)
-    // Now we can finally use the user's locale and account currency!
-    // const formattedMov = new Intl.NumberFormat(account.locale, {
-    //   style: 'currency',
-    //   currency: account.currency,
-    //   // currency: 'USD',
-    // }).format(mov);
     const formattedMov = formatCur(mov, account.locale, account.currency);
-
-    // LEC 4) + 14)
-    // <div class="movements__value">${mov.toFixed(2)}€</div>
     const html = `
       <div class="movements__row">
         <div class="movements__type movements__type--${type}">${
@@ -196,7 +178,6 @@ const printMovements = function (account, sort = false) {
     containerMovements.insertAdjacentHTML('afterbegin', html);
   });
 };
-// printMovements(account1.movements);
 printMovements(account1);
 
 const createUsernames = function (accounts) {
@@ -209,18 +190,9 @@ const createUsernames = function (accounts) {
   });
 };
 createUsernames(accounts);
-
-// LEC 14)
-// const calcPrintBalance = function(movements) {
 const calcPrintBalance = function (account) {
   const balance = account.movements.reduce((accum, cur) => accum + cur, 0);
   currentAccount.balance = balance;
-
-  // LEC 4)
-  // labelBalance.textContent = `${balance}€`;
-  // labelBalance.textContent = `${balance.toFixed(2)}€`;
-
-  // LEC 14)
   labelBalance.textContent = formatCur(
     balance,
     account.locale,
@@ -254,12 +226,9 @@ const calcPrintSummary = function (account) {
     account.currency,
   );
 };
-
-//////////////////////////////////////////////////////////////////
 let currentAccount, timer;
 // Lab 4.1
 btnLogin.addEventListener('click', function (e) {
-  // Ngăn sự kiện mặc định khi bấm nút submit sẽ không bị load trang
   e.preventDefault();
 
   currentAccount = accounts.find(
@@ -271,28 +240,10 @@ btnLogin.addEventListener('click', function (e) {
 
     // Xóa chữ ở thẻ input khi đăng nhập
     inputLoginUsername.value = inputLoginPin.value = '';
-    // Làm mất focus ở thẻ input khi đăng nhập
     inputLoginPin.blur();
-
-    // Làm hiện lên container từ opacity 0 -> 100
     containerApp.style.opacity = 100;
-
-    // LEC 16)
-    // 2.
-    // If there is already a timer, then cancel it!
     if (timer) clearInterval(timer);
-
-    // 1.
-    // Start 5 minutes timer to log out user automatically)
     timer = startLogOutTimer();
-
-    // 2.
-
-    // Print welcome message
-    // LEC 10)
-    // labelWelcome.textContent = `Welcome back, ${
-    //   currentAccount.owner.split(' ')[0]
-    // }!`;
     printWelcome(`${currentAccount.owner.split(' ')[0]}`);
 
     // LEC 12)
