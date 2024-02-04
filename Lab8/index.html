@@ -1,0 +1,708 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="Ervin Ruci">
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="apple-touch-icon-precomposed" sizes="57x57" href="https://geocode.xyz/apple-touch-icon-57x57.png" />
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://geocode.xyz/apple-touch-icon-114x114.png" />
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://geocode.xyz/apple-touch-icon-72x72.png" />
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://geocode.xyz/apple-touch-icon-144x144.png" />
+<link rel="apple-touch-icon-precomposed" sizes="60x60" href="https://geocode.xyz/apple-touch-icon-60x60.png" />
+<link rel="apple-touch-icon-precomposed" sizes="120x120" href="https://geocode.xyz/apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon-precomposed" sizes="76x76" href="https://geocode.xyz/apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon-precomposed" sizes="152x152" href="https://geocode.xyz/apple-touch-icon-152x152.png" />
+<link rel="icon" type="image/png" href="https://geocode.xyz/favicon-196x196.png" sizes="196x196" />
+<link rel="icon" type="image/png" href="https://geocode.xyz/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/png" href="https://geocode.xyz/favicon-32x32.png" sizes="32x32" />
+<link rel="icon" type="image/png" href="https://geocode.xyz/favicon-16x16.png" sizes="16x16" />
+<link rel="icon" type="image/png" href="https://geocode.xyz/favicon-128.png" sizes="128x128" />
+<meta name="application-name" content="Geoparse and Geocode your data" />
+<meta name="msapplication-TileColor" content="#FFFFFF" />
+<meta name="msapplication-TileImage" content="https://geocode.xyz/mstile-144x144.png" />
+<meta name="msapplication-square70x70logo" content="https://geocode.xyz/mstile-70x70.png" />
+<meta name="msapplication-square150x150logo" content="https://geocode.xyz/mstile-150x150.png" />
+<meta name="msapplication-wide310x150logo" content="https://geocode.xyz/mstile-310x150.png" />
+<meta name="msapplication-square310x310logo" content="https://geocode.xyz/mstile-310x310.png" />
+<meta property="og:image" content="https://geocode.xyz/geocodelogo.svg">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="150">
+<meta property="og:image:height" content="151">
+<script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="f11052f1-cea6-476d-b363-149401ecff5f";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
+
+<link href="/assets/css/bootstrap.css" rel="stylesheet">
+
+<link href="/assets/css/main.css" rel="stylesheet">
+<link href="/assets/css/fancy.css" rel="stylesheet">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="/assets/js/chart.js"></script>
+<link href="/bootstrap-fileinput-master/css/fileinput.min.css" rel="stylesheet">
+<script src="/bootstrap-fileinput-master/js/fileinput.min.js" type="text/javascript"></script>
+<script src="/assets/js/bootstrap.js"></script>
+<link rel="stylesheet" href="/leaflet/leaflet.css" type="text/css" />
+<script type="text/javascript" src="/leaflet/leaflet.js"></script>
+<script type="text/javascript" src="/leaflet/Permalink.js"></script>
+<style>
+
+
+
+.form-login {
+    background-color: #EDEDED;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 15px;
+    border-color:#d2d2d2;
+    border-width: 5px;
+    box-shadow:0 1px 0 #cfcfcf;
+}
+
+.material-button-anim {
+  position: relative;
+  padding: 17px 15px 1px;
+  text-align: center;
+  max-width: 320px;
+  margin: 0 auto 2px;
+}
+
+.material-button {
+    position: relative;
+    top: 0;
+    z-index: 1;
+    width: 70px;
+    height: 70px;
+    font-size: 1.5em;
+    color: #fff;
+    background: #2C98DE;
+    border: none;
+    border-radius: 50%;
+    box-shadow: 0 3px 6px rgba(0,0,0,.275);
+    outline: none;
+}
+.material-button-toggle {
+    z-index: 3;
+    width: 90px;
+    height: 90px;
+    margin: 0 auto;
+}
+.material-button-toggle span {
+    -webkit-transform: none;
+    transform:         none;
+    -webkit-transition: -webkit-transform .175s cubic-bazier(.175,.67,.83,.67);
+    transition:         transform .175s cubic-bazier(.175,.67,.83,.67);
+}
+.material-button-toggle.open {
+    -webkit-transform: scale(1.3,1.3);
+    transform:         scale(1.3,1.3);
+    -webkit-animation: toggleBtnAnim .175s;
+    animation:         toggleBtnAnim .175s;
+}
+.material-button-toggle.open span {
+    -webkit-transform: rotate(45deg);
+    transform:         rotate(45deg);
+    -webkit-transition: -webkit-transform .175s cubic-bazier(.175,.67,.83,.67);
+    transition:         transform .175s cubic-bazier(.175,.67,.83,.67);
+}
+
+#options {
+  height: 70px;
+}
+.option {
+    position: relative;
+}
+.option .option1,
+.option .option2,
+.option .option3,
+.option .option4, 
+.option .option5 {
+    filter: blur(5px);
+    -webkit-filter: blur(5px);
+    -webkit-transition: all .175s;
+    transition:         all .175s;
+}
+.option .option1 {
+    -webkit-transform: translate3d(90px,90px,0) scale(.8,.8);
+    transform:         translate3d(90px,90px,0) scale(.8,.8);
+}
+.option .option2 {
+    -webkit-transform: translate3d(0,90px,0) scale(.8,.8);
+    transform:         translate3d(0,90px,0) scale(.8,.8);
+}
+.option .option3 {
+    -webkit-transform: translate3d(-90px,90px,0) scale(.8,.8);
+    transform:         translate3d(-90px,90px,0) scale(.8,.8);
+}
+.option .option4 {
+    -webkit-transform: translate3d(180px,90px,0) scale(.8,.8);
+    transform:         translate3d(180px,90px,0) scale(.8,.8);
+}
+.option .option5 {
+    -webkit-transform: translate3d(-180px,90px,0) scale(.8,.8);
+    transform:         translate3d(-180px,90px,0) scale(.8,.8);
+}
+
+.option.scale-on .option1, 
+.option.scale-on .option2,
+.option.scale-on .option3,
+.option.scale-on .option4, 
+.option.scale-on .option5 {
+    filter: blur(0);
+    -webkit-filter: blur(0);
+    -webkit-transform: none;
+    transform:         none;
+    -webkit-transition: all .175s;
+    transition:         all .175s;
+}
+.option.scale-on .option2 {
+    -webkit-transform: translateY(-28px) translateZ(0);
+    transform:         translateY(-28px) translateZ(0);
+    -webkit-transition: all .175s;
+    transition:         all .175s;
+}
+
+@keyframes toggleBtnAnim {
+    0% {
+        -webkit-transform: scale(1,1);
+        transform:         scale(1,1);
+    }
+    25% {
+        -webkit-transform: scale(1.4,1.4);
+        transform:         scale(1.4,1.4); 
+    }
+    75% {
+        -webkit-transform: scale(1.2,1.2);
+        transform:         scale(1.2,1.2);
+    }
+    100% {
+        -webkit-transform: scale(1.3,1.3);
+        transform:         scale(1.3,1.3);
+    }
+}
+@-webkit-keyframes toggleBtnAnim {
+    0% {
+        -webkit-transform: scale(1,1);
+        transform:         scale(1,1);
+    }
+    25% {
+        -webkit-transform: scale(1.4,1.4);
+        transform:         scale(1.4,1.4); 
+    }
+    75% {
+        -webkit-transform: scale(1.2,1.2);
+        transform:         scale(1.2,1.2);
+    }
+    100% {
+        -webkit-transform: scale(1.3,1.3);
+        transform:         scale(1.3,1.3);
+    }
+}
+
+#tabcontainer {
+    display: table;
+    }
+#tabrow  {
+    display: table-row;
+    }
+#tableft, #tabright, #tabmiddle, #tabmidleft {
+    display: table-cell;
+    padding-right: 25px;
+    }
+#tableft p, #tabright p, #tabmiddle p, #tabmidleft p {
+    margin: 1px 1px;
+   }
+
+
+#background{
+    position:absolute;
+    z-index:0;
+    background:white;
+    display:block;
+    min-height:100%; 
+    min-width:100%;
+    color:lightgray;
+}
+
+
+
+
+
+      #map {
+        height: 300px;
+	width: 100%;
+      }
+
+#content{
+    position:absolute;
+    z-index:1;
+}
+
+#bg-text
+{
+    padding-top:40px;
+	padding-left:20px;
+    color:lightgray;
+    font-size:40px;
+    transform:rotate(360deg);
+    -webkit-transform:rotate(360deg);
+}
+
+hr {
+  height: 4px;
+  margin-left: 15px;
+  margin-bottom:-3px;
+}
+.hr-warning{
+  background-image: -webkit-linear-gradient(left, rgba(210,105,30,.8), rgba(210,105,30,.6), rgba(0,0,0,0));
+}
+.hr-success{
+  background-image: -webkit-linear-gradient(left, rgba(15,157,88,.8), rgba(15, 157, 88,.6), rgba(0,0,0,0));
+}
+.hr-primary{
+  background-image: -webkit-linear-gradient(left, rgba(66,133,244,.8), rgba(66, 133, 244,.6), rgba(0,0,0,0));
+}
+.hr-danger{
+  background-image: -webkit-linear-gradient(left, rgba(244,67,54,.8), rgba(244,67,54,.6), rgba(0,0,0,0));
+}
+
+.breadcrumb {
+  background: rgba(245, 245, 245, 0); 
+  border: 0px solid rgba(245, 245, 245, 1); 
+  border-radius: 25px; 
+  display: block;
+}
+
+.btn-bread{
+    margin-top:10px;
+    font-size: 12px;
+    
+    border-radius: 3px;
+}
+
+</style>
+<title>Geocode.xyz: Geoparse, Geocode and map your geo data to latitude,longitude and elevation.</title>
+<meta name="description" content=" geocode.xyz - A geoparser, geocoder and batch geocoder for the world. Map your data.">
+<script type="text/javascript">
+var TxtType = function(el, toRotate, period) {
+        this.toRotate = toRotate;
+        this.el = el;
+        this.loopNum = 0;
+        this.period = parseInt(period, 10) || 2000;
+        this.txt = '';
+        this.tick();
+        this.isDeleting = false;
+    };
+
+    TxtType.prototype.tick = function() {
+        var i = this.loopNum % this.toRotate.length;
+        var fullTxt = this.toRotate[i];
+
+        if (this.isDeleting) {
+        this.txt = fullTxt.substring(0, this.txt.length - 1);
+        } else {
+        this.txt = fullTxt.substring(0, this.txt.length + 1);
+        }
+
+        this.el.innerHTML = '<span class="wrap">'+this.txt+'</span>';
+
+        var that = this;
+        var delta = 200 - Math.random() * 100;
+
+        if (this.isDeleting) { delta /= 2; }
+
+        if (!this.isDeleting && this.txt === fullTxt) {
+        delta = this.period;
+        this.isDeleting = true;
+        } else if (this.isDeleting && this.txt === '') {
+        this.isDeleting = false;
+        this.loopNum++;
+        delta = 500;
+        }
+
+        setTimeout(function() {
+        that.tick();
+        }, delta);
+    };
+
+    window.onload = function() {
+        var elements = document.getElementsByClassName('typewrite');
+        for (var i=0; i<elements.length; i++) {
+            var toRotate = elements[i].getAttribute('data-type');
+            var period = elements[i].getAttribute('data-period');
+            if (toRotate) {
+              new TxtType(elements[i], JSON.parse(toRotate), period);
+            }
+        }
+        // INJECT CSS
+        var css = document.createElement("style");
+        css.type = "text/css";
+        css.innerHTML = ".typewrite > .wrap { border-right: 0.08em solid #fff}";
+        document.body.appendChild(css);
+    };
+</script>
+
+<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+<meta name="google-site-verification" content="zsDSeodTmOP68XtH5L60ARmwu1bsR8yva0iZfAa9N-Q" />
+</head>
+<body>
+<div id="background">
+<img alt="World.geocode.xyz" class="pull-right" src="/world.png">
+<p id="bg-text"><a href="https://geocode.xyz">Geocode.xyz</a>
+</p>
+</div>
+
+<div class="navbar navbar-default navbar-fixed-top">
+<div class="container">
+<div class="navbar-header">
+<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+</button>
+<a class="navbar-brand" href="https://geocode.xyz"><i class="fa fa-map-marker"></i>
+</a>
+</div>
+<div class="navbar-collapse collapse">
+<ul class="nav navbar-nav navbar-right">
+<li><a href="https://geocode.xyz">Geocode</a></li>
+<li><a href="https://geocode.xyz/batch">Batch Geocode</a></li>
+<li><a href="https://geocode.xyz/textscan">Geoparse</a></li>
+<li><a href="/api">API</a></li>
+<li><a href="/contact">Contact</a></li>
+<li><a href="https://geocode.xyz/login"><i class="fa fa-sign-in"></i> LOG IN</a></li>
+<li><a href="https://geocode.xyz/new_account" class> SIGN UP</a></li>
+<li><a href="https://geocode.xyz/pricing">Pricing</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="hello">
+<div class="container">
+<div class="row">
+<div class="col-lg-12">
+
+<div class="row">
+<span class="pull-left">
+</span>
+<div class="col-xs-12 col-sm-8 col-md-8 col-sm-offset-2 col-md-offset-1">
+<div class="panel panel-default">
+<form role="form" method="post" action="/" enctype="multipart/form-data">
+<div class="row row-fluid">
+<div class="col-xs-12 col-sm-10 col-md-10">
+<br>
+<div class="form-group input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
+<input type="text" class="form-control input-lg" name="locate" placeholder="Location? (address, town, postcode country)" value>
+</div>
+<br>
+<div class="pull-left form-group input-group">
+<select class="btn btn-default dropdown-toggle selectpicker" name="geoit">
+<option default>On a Map</option>
+<option value="CSV">CSV </option>
+<option value="XML">XML </option>
+<option value="JSON">JSON </option>
+<option value="GeoJSON">GeoJSON </option>
+</select>
+-
+<select class="btn btn-default dropdown-toggle pull-right selectpicker" name="region">
+<option value="World" default>Worldwide Geocoding</option>
+<option value="Europe">Europe biased Geocoding</option>
+<option value="SouthAmerica">South America biased Geocoding</option>
+<option value="Asia">Asia biased Geocoding</option>
+<option value="Oceania">Oceania biased Geocoding</option>
+<option value="disabled">By country</option>
+<option value="AF">Afghanistan</option><option value="AX">Aland Islands</option><option value="AL">Albania</option><option value="DZ">Algeria</option><option value="AS">American Samoa</option><option value="AD">Andorra</option><option value="AO">Angola</option><option value="AI">Anguilla</option><option value="AQ">Antarctica</option><option value="AG">Antigua and Barbuda</option><option value="AR">Argentina</option><option value="AM">Armenia</option><option value="AW">Aruba</option><option value="AU">Australia</option><option value="AT">Austria</option><option value="AZ">Azerbaijan</option><option value="BS">Bahamas</option><option value="BH">Bahrain</option><option value="BD">Bangladesh</option><option value="BB">Barbados</option><option value="BY">Belarus</option><option value="BE">Belgium</option><option value="BZ">Belize</option><option value="BJ">Benin</option><option value="BM">Bermuda</option><option value="BT">Bhutan</option><option value="BO">Bolivia</option><option value="BQ">Bonaire</option><option value="BA">Bosnia and Herzegovina</option><option value="BW">Botswana</option><option value="BR">Brazil</option><option value="IO">British Indian Ocean Territory</option><option value="VG">British Virgin Islands</option><option value="BN">Brunei Darussalam</option><option value="BG">Bulgaria</option><option value="BF">Burkina Faso</option><option value="BI">Burundi</option><option value="KH">Cambodia</option><option value="CM">Cameroon</option><option value="CA">Canada</option><option value="CV">Cape Verde</option><option value="KY">Cayman Islands</option><option value="CF">Central African Republic</option><option value="TD">Chad</option><option value="CL">Chile</option><option value="CN">China</option><option value="CX">Christmas Island</option><option value="CC">Cocos (Keeling) Islands</option><option value="CO">Colombia</option><option value="KM">Comoros</option><option value="CG">Congo</option><option value="CK">Cook Islands</option><option value="CR">Costa Rica</option><option value="HR">Croatia</option><option value="CU">Cuba</option><option value="CW">Curaçao</option><option value="CY">Cyprus</option><option value="CZ">Czech Republic</option><option value="CI">Côte d'Ivoire</option><option value="DK">Denmark</option><option value="DJ">Djibouti</option><option value="DM">Dominica</option><option value="DO">Dominican Republic</option><option value="EC">Ecuador</option><option value="EG">Egypt</option><option value="SV">El Salvador</option><option value="GQ">Equatorial Guinea</option><option value="ER">Eritrea</option><option value="EE">Estonia</option><option value="ET">Ethiopia</option><option value="FK">Falkland Islands</option><option value="FO">Faroe Islands</option><option value="FJ">Fiji</option><option value="FI">Finland</option><option value="FR">France</option><option value="GF">French Guiana</option><option value="PF">French Polynesia</option><option value="TF">French Southern Territories</option><option value="GA">Gabon</option><option value="GM">Gambia</option><option value="GE">Georgia</option><option value="DE">Germany</option><option value="GH">Ghana</option><option value="GI">Gibraltar</option><option value="GR">Greece</option><option value="GL">Greenland</option><option value="GD">Grenada</option><option value="GP">Guadeloupe</option><option value="GU">Guam</option><option value="GT">Guatemala</option><option value="GG">Guernsey</option><option value="GN">Guinea</option><option value="GW">Guinea-Bissau</option><option value="GY">Guyana</option><option value="HT">Haiti</option><option value="HM">Heard Island and Mcdonald Islands</option><option value="HN">Honduras</option><option value="HK">Hong Kong</option><option value="HU">Hungary</option><option value="IS">Iceland</option><option value="IN">India</option><option value="ID">Indonesia</option><option value="IR">Iran</option><option value="IQ">Iraq</option><option value="IE">Ireland</option><option value="IM">Isle of Man</option><option value="IL">Israel</option><option value="IT">Italy</option><option value="JM">Jamaica</option><option value="JP">Japan</option><option value="JE">Jersey</option><option value="JO">Jordan</option><option value="KZ">Kazakhstan</option><option value="KE">Kenya</option><option value="KI">Kiribati</option><option value="KS">Kosovo</option><option value="KW">Kuwait</option><option value="KG">Kyrgyzstan</option><option value="LA">Lao PDR</option><option value="LV">Latvia</option><option value="LB">Lebanon</option><option value="LS">Lesotho</option><option value="LR">Liberia</option><option value="LY">Libya</option><option value="LI">Liechtenstein</option><option value="LT">Lithuania</option><option value="LU">Luxembourg</option><option value="MO">Macao</option><option value="MG">Madagascar</option><option value="MW">Malawi</option><option value="MY">Malaysia</option><option value="MV">Maldives</option><option value="ML">Mali</option><option value="MT">Malta</option><option value="MH">Marshall Islands</option><option value="MQ">Martinique</option><option value="MR">Mauritania</option><option value="MU">Mauritius</option><option value="YT">Mayotte</option><option value="MX">Mexico</option><option value="FM">Micronesia</option><option value="MD">Moldova</option><option value="MC">Monaco</option><option value="MN">Mongolia</option><option value="ME">Montenegro</option><option value="MS">Montserrat</option><option value="MA">Morocco</option><option value="MZ">Mozambique</option><option value="MM">Myanmar</option><option value="NA">Namibia</option><option value="NR">Nauru</option><option value="NP">Nepal</option><option value="NL">Netherlands</option><option value="AN">Netherlands Antilles</option><option value="NC">New Caledonia</option><option value="NZ">New Zealand</option><option value="NI">Nicaragua</option><option value="NE">Niger</option><option value="NG">Nigeria</option><option value="NU">Niue</option><option value="NF">Norfolk Island</option><option value="KP">North Korea</option><option value="MK">North Macedonia</option><option value="MP">Northern Mariana Islands</option><option value="NO">Norway</option><option value="OM">Oman</option><option value="PK">Pakistan</option><option value="PW">Palau</option><option value="PS">Palestinian Territory</option><option value="PA">Panama</option><option value="PG">Papua New Guinea</option><option value="PY">Paraguay</option><option value="PE">Peru</option><option value="PH">Philippines</option><option value="PN">Pitcairn</option><option value="PL">Poland</option><option value="PT">Portugal</option><option value="PR">Puerto Rico</option><option value="QA">Qatar</option><option value="RO">Romania</option><option value="RU">Russian Federation</option><option value="RW">Rwanda</option><option value="RE">Réunion</option><option value="GS">SGSSI</option><option value="SH">Saint Helena</option><option value="KN">Saint Kitts and Nevis</option><option value="LC">Saint Lucia</option><option value="PM">Saint Pierre and Miquelon</option><option value="VC">Saint Vincent and Grenadines</option><option value="BL">Saint-Barthélemy</option><option value="SX">Saint-Martin</option><option value="MF">Saint-Martin</option><option value="WS">Samoa</option><option value="SM">San Marino</option><option value="ST">Sao Tome and Principe</option><option value="SA">Saudi Arabia</option><option value="SN">Senegal</option><option value="RS">Serbia</option><option value="SC">Seychelles</option><option value="SL">Sierra Leone</option><option value="SG">Singapore</option><option value="SK">Slovakia</option><option value="SI">Slovenia</option><option value="SB">Solomon Islands</option><option value="SO">Somalia</option><option value="ZA">South Africa</option><option value="KR">South Korea</option><option value="SS">South Sudan</option><option value="ES">Spain</option><option value="LK">Sri Lanka</option><option value="SD">Sudan</option><option value="SR">Suriname</option><option value="SJ">Svalbard and Jan Mayen Islands</option><option value="SZ">Swaziland</option><option value="SE">Sweden</option><option value="CH">Switzerland</option><option value="SY">Syria</option><option value="TW">Taiwan</option><option value="TJ">Tajikistan</option><option value="TZ">Tanzania</option><option value="TH">Thailand</option><option value="TL">Timor-Leste</option><option value="TG">Togo</option><option value="TK">Tokelau</option><option value="TO">Tonga</option><option value="TT">Trinidad and Tobago</option><option value="TN">Tunisia</option><option value="TR">Turkey</option><option value="TM">Turkmenistan</option><option value="TC">Turks and Caicos Islands</option><option value="TV">Tuvalu</option><option value="UM">US Minor Outlying Islands</option><option value="UG">Uganda</option><option value="UA">Ukraine</option><option value="AE">United Arab Emirates</option><option value="UK">United Kingdom</option><option value="US">United States of America</option><option value="UY">Uruguay</option><option value="UZ">Uzbekistan</option><option value="VU">Vanuatu</option><option value="VA">Vatican</option><option value="VE">Venezuela</option><option value="VN">Viet Nam</option><option value="VI">Virgin Islands, US</option><option value="WF">Wallis and Futuna Islands</option><option value="EH">Western Sahara</option><option value="YE">Yemen</option><option value="CD">Zaire</option><option value="ZM">Zambia</option><option value="ZW">Zimbabwe</option>
+</select> <br><small class="pull-right">(optional - this can improve your results)</small>
+</div>
+</div>
+<input class="pull-left btn btn-default orange-circle-button" type="submit" name="ok" value="Geocode">
+</div>
+</form>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 text-center">
+<div class="list-group">
+<a class="list-group-item active" href="/?region=World">World</a>
+<a class="list-group-item" href="https://geocode.xyz/NorthAmerica">North America</a>
+<a class="list-group-item" href="/?region=SouthAmerica">South America</a>
+<a class="list-group-item" href="/?region=Europe">Europe</a>
+<a class="list-group-item" href="/?region=Asia">Asia</a>
+<a class="list-group-item" href="/?region=Oceania">Oceania</a>
+</div>
+</div>
+<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 text-left">
+<a class="pull-left" href="https://geocode.xyz/VN">🇻🇳 Viet Nam Examples:</a><br>
+<small>
+<a href="https://geocode.xyz/Cửa Hàng Giao Dịch Mobifone, 283 Lê Lợi, Ngọc Phụng, Thường Xuân, Thanh Hoá, Vietnam?region=VN">Cửa Hàng Giao Dịch Mobifone, 283 Lê Lợi, Ngọc Phụng, Thường Xuân, Thanh Hoá, Vietnam</a>
+<br>
+<a href="https://geocode.xyz/19.90509,105.34599?region=VN">19.90509,105.34599</a>
+<br>
+<a href="https://geocode.xyz/1.53.36.107">1.53.36.107</a>
+</small>
+<a class="pull-right" href="#examples" onclick="$('#examples').toggle();">
+More Examples &raquo;
+</a>
+<br>
+<br>
+<br>
+<a href="https://geocode.xyz/api" class="pull-left btn btn-link"><i class="fa fa-link"></i> API</a>
+<a class="pull-right btn btn-link" href="#coverage" onclick="$('#coverage').toggle();"><i class="fa fa-map-marker"></i> Click for geocode.xyz coverage area.</a>
+<a href="https://geocode.xyz/pricing" class="pull-left btn btn-link"><i class="fa fa-money"></i> Pricing</a>
+<a href="https://aws.amazon.com/marketplace/pp/B06Y1DVR9L" class="pull-right btn btn-link"><i class="fa fa-server"></i> Launch this server on the AWS Cloud.</a>
+</div>
+</div>
+<a href="https://store.poidata.xyz/worldpois" class="pull-left">Worldwide Point of interest / Place of interest (POI) Geospatial data - Ground Truth at the Speed of Life</a>
+<div id="coverage" style="display: none;">
+<br><br><br>
+<ul class="nav nav-tabs">
+<li><a href="/AF"> AF 🇦🇫 Afghanistan</a></li> <li><a href="/AX"> AX 🇦🇽 Aland Islands</a></li> <li><a href="/AL"> AL 🇦🇱 Albania</a></li> <li><a href="/DZ"> DZ 🇩🇿 Algeria</a></li> <li><a href="/AS"> AS 🇦🇸 American Samoa</a></li> <li><a href="/AD"> AD 🇦🇩 Andorra</a></li> <li><a href="/AO"> AO 🇦🇴 Angola</a></li> <li><a href="/AI"> AI 🇦🇮 Anguilla</a></li> <li><a href="/AQ"> AQ 🇦🇶 Antarctica</a></li> <li><a href="/AG"> AG 🇦🇬 Antigua and Barbuda</a></li> <li><a href="/AR"> AR 🇦🇷 Argentina</a></li> <li><a href="/AM"> AM 🇦🇲 Armenia</a></li> <li><a href="/AW"> AW 🇦🇼 Aruba</a></li> <li><a href="/AU"> AU 🇦🇺 Australia</a></li> <li><a href="/AT"> AT 🇦🇹 Austria</a></li> <li><a href="/AZ"> AZ 🇦🇿 Azerbaijan</a></li> <li><a href="/BS"> BS 🇧🇸 Bahamas</a></li> <li><a href="/BH"> BH 🇧🇭 Bahrain</a></li> <li><a href="/BD"> BD 🇧🇩 Bangladesh</a></li> <li><a href="/BB"> BB 🇧🇧 Barbados</a></li> <li><a href="/BY"> BY 🇧🇾 Belarus</a></li> <li><a href="/BE"> BE 🇧🇪 Belgium</a></li> <li><a href="/BZ"> BZ 🇧🇿 Belize</a></li> <li><a href="/BJ"> BJ 🇧🇯 Benin</a></li> <li><a href="/BM"> BM 🇧🇲 Bermuda</a></li> <li><a href="/BT"> BT 🇧🇹 Bhutan</a></li> <li><a href="/BO"> BO 🇧🇴 Bolivia</a></li> <li><a href="/BQ"> BQ 🇧🇶 Bonaire</a></li> <li><a href="/BA"> BA 🇧🇦 Bosnia and Herzegovina</a></li> <li><a href="/BW"> BW 🇧🇼 Botswana</a></li> <li><a href="/BR"> BR 🇧🇷 Brazil</a></li> <li><a href="/IO"> IO 🇮🇴 British Indian Ocean Territory</a></li> <li><a href="/VG"> VG 🇻🇬 British Virgin Islands</a></li> <li><a href="/BN"> BN 🇧🇳 Brunei Darussalam</a></li> <li><a href="/BG"> BG 🇧🇬 Bulgaria</a></li> <li><a href="/BF"> BF 🇧🇫 Burkina Faso</a></li> <li><a href="/BI"> BI 🇧🇮 Burundi</a></li> <li><a href="/KH"> KH 🇰🇭 Cambodia</a></li> <li><a href="/CM"> CM 🇨🇲 Cameroon</a></li> <li><a href="/CA"> CA 🇨🇦 Canada</a></li> <li><a href="/CV"> CV 🇨🇻 Cape Verde</a></li> <li><a href="/KY"> KY 🇰🇾 Cayman Islands</a></li> <li><a href="/CF"> CF 🇨🇫 Central African Republic</a></li> <li><a href="/TD"> TD 🇹🇩 Chad</a></li> <li><a href="/CL"> CL 🇨🇱 Chile</a></li> <li><a href="/CN"> CN 🇨🇳 China</a></li> <li><a href="/CX"> CX 🇨🇽 Christmas Island</a></li> <li><a href="/CC"> CC 🇨🇨 Cocos (Keeling) Islands</a></li> <li><a href="/CO"> CO 🇨🇴 Colombia</a></li> <li><a href="/KM"> KM 🇰🇲 Comoros</a></li> <li><a href="/CG"> CG 🇨🇬 Congo</a></li> <li><a href="/CK"> CK 🇨🇰 Cook Islands</a></li> <li><a href="/CR"> CR 🇨🇷 Costa Rica</a></li> <li><a href="/HR"> HR 🇭🇷 Croatia</a></li> <li><a href="/CU"> CU 🇨🇺 Cuba</a></li> <li><a href="/CW"> CW 🇨🇼 Curaçao</a></li> <li><a href="/CY"> CY 🇨🇾 Cyprus</a></li> <li><a href="/CZ"> CZ 🇨🇿 Czech Republic</a></li> <li><a href="/CI"> CI 🇨🇮 Côte d'Ivoire</a></li> <li><a href="/DK"> DK 🇩🇰 Denmark</a></li> <li><a href="/DJ"> DJ 🇩🇯 Djibouti</a></li> <li><a href="/DM"> DM 🇩🇲 Dominica</a></li> <li><a href="/DO"> DO 🇩🇴 Dominican Republic</a></li> <li><a href="/EC"> EC 🇪🇨 Ecuador</a></li> <li><a href="/EG"> EG 🇪🇬 Egypt</a></li> <li><a href="/SV"> SV 🇸🇻 El Salvador</a></li> <li><a href="/GQ"> GQ 🇬🇶 Equatorial Guinea</a></li> <li><a href="/ER"> ER 🇪🇷 Eritrea</a></li> <li><a href="/EE"> EE 🇪🇪 Estonia</a></li> <li><a href="/ET"> ET 🇪🇹 Ethiopia</a></li> <li><a href="/FK"> FK 🇫🇰 Falkland Islands</a></li> <li><a href="/FO"> FO 🇫🇴 Faroe Islands</a></li> <li><a href="/FJ"> FJ 🇫🇯 Fiji</a></li> <li><a href="/FI"> FI 🇫🇮 Finland</a></li> <li><a href="/FR"> FR 🇫🇷 France</a></li> <li><a href="/GF"> GF 🇬🇫 French Guiana</a></li> <li><a href="/PF"> PF 🇵🇫 French Polynesia</a></li> <li><a href="/TF"> TF 🇹🇫 French Southern Territories</a></li> <li><a href="/GA"> GA 🇬🇦 Gabon</a></li> <li><a href="/GM"> GM 🇬🇲 Gambia</a></li> <li><a href="/GE"> GE 🇬🇪 Georgia</a></li> <li><a href="/DE"> DE 🇩🇪 Germany</a></li> <li><a href="/GH"> GH 🇬🇭 Ghana</a></li> <li><a href="/GI"> GI 🇬🇮 Gibraltar</a></li> <li><a href="/GR"> GR 🇬🇷 Greece</a></li> <li><a href="/GL"> GL 🇬🇱 Greenland</a></li> <li><a href="/GD"> GD 🇬🇩 Grenada</a></li> <li><a href="/GP"> GP 🇬🇵 Guadeloupe</a></li> <li><a href="/GU"> GU 🇬🇺 Guam</a></li> <li><a href="/GT"> GT 🇬🇹 Guatemala</a></li> <li><a href="/GG"> GG 🇬🇬 Guernsey</a></li> <li><a href="/GN"> GN 🇬🇳 Guinea</a></li> <li><a href="/GW"> GW 🇬🇼 Guinea-Bissau</a></li> <li><a href="/GY"> GY 🇬🇾 Guyana</a></li> <li><a href="/HT"> HT 🇭🇹 Haiti</a></li> <li><a href="/HM"> HM 🇭🇲 Heard Island and Mcdonald Islands</a></li> <li><a href="/HN"> HN 🇭🇳 Honduras</a></li> <li><a href="/HK"> HK 🇭🇰 Hong Kong</a></li> <li><a href="/HU"> HU 🇭🇺 Hungary</a></li> <li><a href="/IS"> IS 🇮🇸 Iceland</a></li> <li><a href="/IN"> IN 🇮🇳 India</a></li> <li><a href="/ID"> ID 🇮🇩 Indonesia</a></li> <li><a href="/IR"> IR 🇮🇷 Iran</a></li> <li><a href="/IQ"> IQ 🇮🇶 Iraq</a></li> <li><a href="/IE"> IE 🇮🇪 Ireland</a></li> <li><a href="/IM"> IM 🇮🇲 Isle of Man</a></li> <li><a href="/IL"> IL 🇮🇱 Israel</a></li> <li><a href="/IT"> IT 🇮🇹 Italy</a></li> <li><a href="/JM"> JM 🇯🇲 Jamaica</a></li> <li><a href="/JP"> JP 🇯🇵 Japan</a></li> <li><a href="/JE"> JE 🇯🇪 Jersey</a></li> <li><a href="/JO"> JO 🇯🇴 Jordan</a></li> <li><a href="/KZ"> KZ 🇰🇿 Kazakhstan</a></li> <li><a href="/KE"> KE 🇰🇪 Kenya</a></li> <li><a href="/KI"> KI 🇰🇮 Kiribati</a></li> <li><a href="/KS"> KS Kosovo</a></li> <li><a href="/KW"> KW 🇰🇼 Kuwait</a></li> <li><a href="/KG"> KG 🇰🇬 Kyrgyzstan</a></li> <li><a href="/LA"> LA 🇱🇦 Lao PDR</a></li> <li><a href="/LV"> LV 🇱🇻 Latvia</a></li> <li><a href="/LB"> LB 🇱🇧 Lebanon</a></li> <li><a href="/LS"> LS 🇱🇸 Lesotho</a></li> <li><a href="/LR"> LR 🇱🇷 Liberia</a></li> <li><a href="/LY"> LY 🇱🇾 Libya</a></li> <li><a href="/LI"> LI 🇱🇮 Liechtenstein</a></li> <li><a href="/LT"> LT 🇱🇹 Lithuania</a></li> <li><a href="/LU"> LU 🇱🇺 Luxembourg</a></li> <li><a href="/MO"> MO 🇲🇴 Macao</a></li> <li><a href="/MG"> MG 🇲🇬 Madagascar</a></li> <li><a href="/MW"> MW 🇲🇼 Malawi</a></li> <li><a href="/MY"> MY 🇲🇾 Malaysia</a></li> <li><a href="/MV"> MV 🇲🇻 Maldives</a></li> <li><a href="/ML"> ML 🇲🇱 Mali</a></li> <li><a href="/MT"> MT 🇲🇹 Malta</a></li> <li><a href="/MH"> MH 🇲🇭 Marshall Islands</a></li> <li><a href="/MQ"> MQ 🇲🇶 Martinique</a></li> <li><a href="/MR"> MR 🇲🇷 Mauritania</a></li> <li><a href="/MU"> MU 🇲🇺 Mauritius</a></li> <li><a href="/YT"> YT 🇾🇹 Mayotte</a></li> <li><a href="/MX"> MX 🇲🇽 Mexico</a></li> <li><a href="/FM"> FM 🇫🇲 Micronesia</a></li> <li><a href="/MD"> MD 🇲🇩 Moldova</a></li> <li><a href="/MC"> MC 🇲🇨 Monaco</a></li> <li><a href="/MN"> MN 🇲🇳 Mongolia</a></li> <li><a href="/ME"> ME 🇲🇪 Montenegro</a></li> <li><a href="/MS"> MS 🇲🇸 Montserrat</a></li> <li><a href="/MA"> MA 🇲🇦 Morocco</a></li> <li><a href="/MZ"> MZ 🇲🇿 Mozambique</a></li> <li><a href="/MM"> MM 🇲🇲 Myanmar</a></li> <li><a href="/NA"> NA 🇳🇦 Namibia</a></li> <li><a href="/NR"> NR 🇳🇷 Nauru</a></li> <li><a href="/NP"> NP 🇳🇵 Nepal</a></li> <li><a href="/NL"> NL 🇳🇱 Netherlands</a></li> <li><a href="/AN"> AN Netherlands Antilles</a></li> <li><a href="/NC"> NC 🇳🇨 New Caledonia</a></li> <li><a href="/NZ"> NZ 🇳🇿 New Zealand</a></li> <li><a href="/NI"> NI 🇳🇮 Nicaragua</a></li> <li><a href="/NE"> NE 🇳🇪 Niger</a></li> <li><a href="/NG"> NG 🇳🇬 Nigeria</a></li> <li><a href="/NU"> NU 🇳🇺 Niue</a></li> <li><a href="/NF"> NF 🇳🇫 Norfolk Island</a></li> <li><a href="/KP"> KP 🇰🇵 North Korea</a></li> <li><a href="/MK"> MK 🇲🇰 North Macedonia</a></li> <li><a href="/MP"> MP 🇲🇵 Northern Mariana Islands</a></li> <li><a href="/NO"> NO 🇳🇴 Norway</a></li> <li><a href="/OM"> OM 🇴🇲 Oman</a></li> <li><a href="/PK"> PK 🇵🇰 Pakistan</a></li> <li><a href="/PW"> PW 🇵🇼 Palau</a></li> <li><a href="/PS"> PS 🇵🇸 Palestinian Territory</a></li> <li><a href="/PA"> PA 🇵🇦 Panama</a></li> <li><a href="/PG"> PG 🇵🇬 Papua New Guinea</a></li> <li><a href="/PY"> PY 🇵🇾 Paraguay</a></li> <li><a href="/PE"> PE 🇵🇪 Peru</a></li> <li><a href="/PH"> PH 🇵🇭 Philippines</a></li> <li><a href="/PN"> PN 🇵🇳 Pitcairn</a></li> <li><a href="/PL"> PL 🇵🇱 Poland</a></li> <li><a href="/PT"> PT 🇵🇹 Portugal</a></li> <li><a href="/PR"> PR 🇵🇷 Puerto Rico</a></li> <li><a href="/QA"> QA 🇶🇦 Qatar</a></li> <li><a href="/RO"> RO 🇷🇴 Romania</a></li> <li><a href="/RU"> RU 🇷🇺 Russian Federation</a></li> <li><a href="/RW"> RW 🇷🇼 Rwanda</a></li> <li><a href="/RE"> RE 🇷🇪 Réunion</a></li> <li><a href="/GS"> GS 🇬🇸 SGSSI</a></li> <li><a href="/SH"> SH 🇸🇭 Saint Helena</a></li> <li><a href="/KN"> KN 🇰🇳 Saint Kitts and Nevis</a></li> <li><a href="/LC"> LC 🇱🇨 Saint Lucia</a></li> <li><a href="/PM"> PM 🇵🇲 Saint Pierre and Miquelon</a></li> <li><a href="/VC"> VC 🇻🇨 Saint Vincent and Grenadines</a></li> <li><a href="/BL"> BL 🇧🇱 Saint-Barthélemy</a></li> <li><a href="/SX"> SX 🇸🇽 Saint-Martin</a></li> <li><a href="/MF"> MF 🇲🇫 Saint-Martin</a></li> <li><a href="/WS"> WS 🇼🇸 Samoa</a></li> <li><a href="/SM"> SM 🇸🇲 San Marino</a></li> <li><a href="/ST"> ST 🇸🇹 Sao Tome and Principe</a></li> <li><a href="/SA"> SA 🇸🇦 Saudi Arabia</a></li> <li><a href="/SN"> SN 🇸🇳 Senegal</a></li> <li><a href="/RS"> RS 🇷🇸 Serbia</a></li> <li><a href="/SC"> SC 🇸🇨 Seychelles</a></li> <li><a href="/SL"> SL 🇸🇱 Sierra Leone</a></li> <li><a href="/SG"> SG 🇸🇬 Singapore</a></li> <li><a href="/SK"> SK 🇸🇰 Slovakia</a></li> <li><a href="/SI"> SI 🇸🇮 Slovenia</a></li> <li><a href="/SB"> SB 🇸🇧 Solomon Islands</a></li> <li><a href="/SO"> SO 🇸🇴 Somalia</a></li> <li><a href="/ZA"> ZA 🇿🇦 South Africa</a></li> <li><a href="/KR"> KR 🇰🇷 South Korea</a></li> <li><a href="/SS"> SS 🇸🇸 South Sudan</a></li> <li><a href="/ES"> ES 🇪🇸 Spain</a></li> <li><a href="/LK"> LK 🇱🇰 Sri Lanka</a></li> <li><a href="/SD"> SD 🇸🇩 Sudan</a></li> <li><a href="/SR"> SR 🇸🇷 Suriname</a></li> <li><a href="/SJ"> SJ 🇸🇯 Svalbard and Jan Mayen Islands</a></li> <li><a href="/SZ"> SZ 🇸🇿 Swaziland</a></li> <li><a href="/SE"> SE 🇸🇪 Sweden</a></li> <li><a href="/CH"> CH 🇨🇭 Switzerland</a></li> <li><a href="/SY"> SY 🇸🇾 Syria</a></li> <li><a href="/TW"> TW 🇹🇼 Taiwan</a></li> <li><a href="/TJ"> TJ 🇹🇯 Tajikistan</a></li> <li><a href="/TZ"> TZ 🇹🇿 Tanzania</a></li> <li><a href="/TH"> TH 🇹🇭 Thailand</a></li> <li><a href="/TL"> TL 🇹🇱 Timor-Leste</a></li> <li><a href="/TG"> TG 🇹🇬 Togo</a></li> <li><a href="/TK"> TK 🇹🇰 Tokelau</a></li> <li><a href="/TO"> TO 🇹🇴 Tonga</a></li> <li><a href="/TT"> TT 🇹🇹 Trinidad and Tobago</a></li> <li><a href="/TN"> TN 🇹🇳 Tunisia</a></li> <li><a href="/TR"> TR 🇹🇷 Turkey</a></li> <li><a href="/TM"> TM 🇹🇲 Turkmenistan</a></li> <li><a href="/TC"> TC 🇹🇨 Turks and Caicos Islands</a></li> <li><a href="/TV"> TV 🇹🇻 Tuvalu</a></li> <li><a href="/UM"> UM 🇺🇲 US Minor Outlying Islands</a></li> <li><a href="/UG"> UG 🇺🇬 Uganda</a></li> <li><a href="/UA"> UA 🇺🇦 Ukraine</a></li> <li><a href="/AE"> AE 🇦🇪 United Arab Emirates</a></li> <li><a href="/UK"> UK United Kingdom</a></li> <li><a href="/US"> US 🇺🇸 United States of America</a></li> <li><a href="/UY"> UY 🇺🇾 Uruguay</a></li> <li><a href="/UZ"> UZ 🇺🇿 Uzbekistan</a></li> <li><a href="/VU"> VU 🇻🇺 Vanuatu</a></li> <li><a href="/VA"> VA 🇻🇦 Vatican</a></li> <li><a href="/VE"> VE 🇻🇪 Venezuela</a></li> <li><a href="/VN"> VN 🇻🇳 Viet Nam</a></li> <li><a href="/VI"> VI 🇻🇮 Virgin Islands, US</a></li> <li><a href="/WF"> WF 🇼🇫 Wallis and Futuna Islands</a></li> <li><a href="/EH"> EH 🇪🇭 Western Sahara</a></li> <li><a href="/YE"> YE 🇾🇪 Yemen</a></li> <li><a href="/CD"> CD 🇨🇩 Zaire</a></li> <li><a href="/ZM"> ZM 🇿🇲 Zambia</a></li> <li><a href="/ZW"> ZW 🇿🇼 Zimbabwe</a></li>
+</ul>
+</div>
+<div class="row">
+<div class="col-lg-12">
+<h2>
+<br>
+</h2>
+
+</div>
+</div>
+<div>
+<div class="row  mt grid" id="examples" style="display: none;">
+<h2>Geoparsing and Geocoding and Batch Geocoding Examples</h2>
+<br>
+This is a random place sample from every country in the world for evaluating the accuracy of the Geocode.xyz Geoparsing/Geocoding API:
+<br>
+<br>
+<div class="col-lg-4">
+<form action"https: geocode.xyz" method="post" class="form-signin">
+<span class="pull-left"><i class="fa fa-file-text-o"></i>
+<strong>Geoparsing Austria</strong>:(Wikipedia excerpt)</span>
+<input type="hidden" name="locate" value="1">
+<textarea name="scantext" class="form-control input-sm input-block-level" rows="5" cols="30">
+The Vienna Tourist Board [3] operates information and booking booths at the airport Arrival Hall, 7AM-11PM and in the center at 1., Albertinaplatz/Maysedergasse. Information and free maps are also avialable from the InfoPoints and offices at train stations.
+</textarea>
+<input name="geoitgo" value="Geoparse" type="submit" class="btn btn-mini orange-circle-button">
+<select class="selectpicker" name="geoit">
+<option default>On a Map</option>
+<option value="CSV">CSV </option>
+<option value="XML">XML </option>
+<option value="JSON">JSON </option>
+<option value="GeoJSON">GeoJSON </option>
+</select>
+<input type="hidden" name="region" value="AT">
+</form>
+<form action"https: geocode.xyz" method="post" class="form-signin">
+<span class="pull-left"><i class="fa fa-file-text-o"></i>
+<strong>Geoparsing Sweden</strong>: (News excerpt)</span>
+<input type="hidden" name="locate" value="1">
+<textarea name="scantext" class="form-control input-sm input-block-level" rows="7" cols="30">
+A group of passengers landed more than 1,000 kilometres from their destination, after they all got on the wrong flight.
+The 34 passengers on a plane which took off from Sundsvall in central Sweden on Monday afternoon all thought they were flying south to the city of Gothenburg on the west coast.
+
+But instead they ended up in Luleå in the far north.
+</textarea>
+<input name="geoitgo" value="Geoparse" type="submit" class="btn btn-mini orange-circle-button">
+<select class="selectpicker" name="geoit">
+<option default>On a Map</option>
+<option value="CSV">CSV </option>
+<option value="XML">XML </option>
+<option value="JSON">JSON </option>
+<option value="GeoJSON">GeoJSON </option>
+</select>
+<input type="hidden" name="region" value="SE">
+</form>
+</div>
+<div class="col-lg-4">
+<strong>Forward and Reverse Geocoding Examples</strong>
+<ol>
+<li><a href="https://geocode.xyz/52°21'30.5&quot;N%204°52'54.2&quot;E">52°21'30.5"N 4°52'54.2"E</a></li>
+<li><a href="https://geocode.xyz/415%20C'WEALTH%20AVE%20WEST%20Singapore">415 C'WEALTH AVE WEST Singapore</a></li>
+<li><a href="https://geocode.xyz/Vicolo Trieste 10 Capriate Bergamo Italy">Vicolo Trieste 10 Capriate Bergamo Italy</a></li>
+<li><a href="https://geocode.xyz/Avenue+FR%20DE%20LA%20JOSNIERE+13+LE%20DORAT">Avenue FR DE LA JOSNIERE 13 LE DORAT</a></li>
+<li><a href="https://geocode.xyz/55.6802779,12.5900501">55.6802779,12.5900501</a></li>
+<li><a href="https://geocode.xyz/B72 1JU">B72 1JU</a> | <a href="https://geocode.xyz/Bitzighoferstr%206+6060+Switzerland">Bitzighoferstr 6 6060 Switzerland</a></li>
+<li><a href="https://geocode.xyz/27777">27777</a> | <a href="https://geocode.xyz/20%20B%C3%B6kenbusch%2027777?region=DE">20 BÃ¶kenbusch 27777</a></li>
+<li><a href="https://geocode.xyz/Hauptstr.,+57632+Berzhausen">Hauptstr., 57632 Berzhausen</a></li>
+<li><a href="https://geocode.xyz/4 日本橋三丁目, 中央区 JP 103-0027">4 日本橋三丁目, 中央区 JP 103-0027</a></li>
+<li><a href="https://geocode.xyz/5%20Adne%20Edle%20Street,%20London?region=UK">5 Adne Edle Street, London</a> (UK)</li>
+<li><a href="https://geocode.xyz/430 돋질로 남구">430 돋질로 남구</a></li>
+</ol>
+<form action"https: geocode.xyz" method="post" class="form-signin">
+<span class="pull-left"><i class="fa fa-file-text-o"></i>
+<strong>Geoparsing France</strong>: (Book excerpt)</span>
+<input type="hidden" name="locate" value="1">
+<textarea name="scantext" class="form-control input-sm input-block-level" rows="5" cols="50">
+"Why, my dear boy, when a man has been proscribed by the mountaineers,  has escaped from Paris in a hay-cart, been hunted over the plains of  Bordeaux by Robespierre's bloodhounds, he becomes accustomed to most  things. But go on, what about the club in the Rue Saint-Jacques?"    "Why, they induced General Quesnel to go there, and General Quesnel, who  quitted his own house at nine o'clock in the evening, was found the next  day in the Seine."
+</textarea>
+<input name="geoitgo" value="Geoparse" type="submit" class="btn btn-mini orange-circle-button">
+<select class="selectpicker" name="geoit">
+<option default>On a Map</option>
+<option value="CSV">CSV </option>
+<option value="XML">XML </option>
+<option value="JSON">JSON </option>
+<option value="GeoJSON">GeoJSON </option>
+</select>
+<input type="hidden" name="region" value="FR">
+</form>
+</div>
+<div class="col-lg-4">
+<strong>XML, JSON, JSONP, CSV Output</strong>
+<ol>
+<li><a href="https://geocode.xyz/?locate=11%20Calle%20ABRIL,%20Badajoz&geoit=XML">XML</a> |
+<a href="https://geocode.xyz/?locate=11%20Calle%20ABRIL,%20Badajoz&geoit=XML&json=1">JSON</a> |
+<a href="https://geocode.xyz/?locate=11%20Calle%20ABRIL,%20Badajoz&geoit=XML&json=1&callback=test">JSONp</a> |
+<a href="https://geocode.xyz/?locate=11%20Calle%20ABRIL,%20Badajoz&geoit=csv">CSV</a>
+</li>
+<li><a href="https://geocode.xyz/38.879284,-6.975555?geoit=xml">XML</a> |
+<a href="https://geocode.xyz/38.879284,-6.975555?json=1">JSON</a> |
+<a href="https://geocode.xyz/38.879284,-6.975555?json=1&callback=test">JSONp</a>
+</li>
+<li><a href="https://geocode.xyz/?locate=Carrer+de+Colomines%2C+2+Entresuelo+2%AA%2C+Barcelona%2C++08003%2C+Spain&geoit=XML">XML</a> |
+<a href="https://geocode.xyz/?locate=Carrer+de+Colomines%2C+2+Entresuelo+2%AA%2C+Barcelona%2C++08003%2C+Spain&json=1">JSON</a> |
+<a href="https://geocode.xyz/?locate=Carrer+de+Colomines%2C+2+Entresuelo+2%AA%2C+Barcelona%2C++08003%2C+Spain&json=1&callback=test">JSONp</a> |
+<a href="https://geocode.xyz/?locate=Carrer+de+Colomines%2C+2+Entresuelo+2%AA%2C+Barcelona%2C++08003%2C+Spain&geoit=csv">CSV</a>
+</li>
+</ol>
+<h2>Ground Truth</h2>
+We evaluate the accuracy of geocode.xyz by comparing the output latitude and longitude coordinates of the freeform input in relation to what is true on the ground.
+Following is a worldwide sample of customer supplied <a href="https://poidata.xyz">ground truth data</a> and the resulting output from <a href="https://geocode.xyz/batch">our batch geocoding API</a>.
+<p>
+<ul>
+<li><a href="https://geocode.xyz/Random_Sample_Places_World.txt">Input: Random_Sample_Places_World.txt</a></li>
+<li><a href="https://geocode.xyz/Random_Sample_Places_World.csv">Output: Random_Sample_Places_World.csv</a></li>
+<li><a href="https://geocode.xyz/1007605234460898,share?gmap=1">Other download options</a></li>
+</ul>
+</div>
+</div>
+<div class="row mt centered">
+<div class="col-lg-8 col-lg-offset-1 mt">
+<p class="lead"><h1>Geoparse and Geocode the World.</h1></p>
+</div>
+<div class="col-lg-3 mt">for more information <a href="/contact">Contact us!</a></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div> 
+</div>
+<section id="contact"></section>
+<div id="f">
+<div class="container">
+<div class="row">
+<a href="https://geocode.xyz" class="pull-left badge">Geocode.xyz <i class="fa fa-copyright"></i> 2016 - 2024.</a>
+</div>
+</div>
+</div>
+
+
+<div class="modal fade" id="mapexport" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog modal-lg">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+<h4 class="modal-title" id="myModalLabel">Map Export Options</h4>
+</div>
+<div class="modal-body">
+We provide you with 4 ways to export your map. Vector graphics (PDF), Raster Image (PNG), GeoJSON and Plain text of the raw processed data (CSV).
+You may also share your map with a password. (available to registered users only)
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+</div>
+</div>
+</div>
+</div>
+<div class="modal fade" id="mapstyles" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog modal-lg">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+<h4 class="modal-title" id="myModalLabel">Map Styles</h4>
+</div>
+<div class="modal-body">
+You may upload your own map style. (available to registered users only)
+<a href="https://snazzymaps.com/" target="_new">snazzymaps.com</a> has a few free styles (and an editor) to get you started.
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+</div>
+</div>
+</div>
+</div>
+<div class="modal fade" id="filedata" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog modal-lg">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+<h4 class="modal-title" id="myModalLabel"></h4>
+</div>
+<div class="modal-body">
+was processed on
+<p>
+Lines:, Geocoded:, As of:
+<p>
+Raw Data, Original File:<a href="https://geocode.xyz/onetimedownload/yourfiles/"></a>
+<br>
+Batch Geocoded File:<a href="https://geocode.xyz/onetimedownload/yourfiles/out_">out_</a>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+</div>
+</div>
+</div>
+</div>
+<div class="modal fade" id="mapmarkers" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog modal-lg">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+<h4 class="modal-title" id="myModalLabel">Map Markers</h4>
+</div>
+<div class="modal-body">
+You may use your own Map Marker. (available to registered users only)
+Just add the url (or upload) your own marker.
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+</div>
+</div>
+</div>
+</div>
+<div class="modal fade" id="help" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog modal-lg">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+<h4 class="modal-title" id="myModalLabel">Batch Geocoding Plain Text Files with locations</h4>
+</div>
+<div class="modal-body">
+Upload a plain text file with at most one location per line.
+<p><br>
+Output data may be downloaded as CSV, GeoJSON, Map, PNG, PDF.
+<p>
+Each line of the output will have the format: <strong>Input Line, Street Number, Address, City, Country, Postcode, Latitude, Longitude, Confidence Score.</strong>
+<p>
+The <strong>Input Line</strong> may contain one place described in free form text (forward geocoding), or an IP Address / latitude,longitude pair (reverse geocoding.)
+<p>
+For Projection, we use Web Mercator, also known as Google Web Mercator, Spherical Mercator, WGS 84 Web Mercator or WGS 84/Pseudo-Mercator.
+<p>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+</div>
+</div>
+</div>
+</div>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v84a3a4012de94ce1a686ba8c167c359c1696973893317" integrity="sha512-euoFGowhlaLqXsPWQ48qSkBSCFs3DPRyiwVu3FjR96cMPx+Fr+gpWRhIafcHwqwCqWS42RZhIudOvEI+Ckf6MA==" data-cf-beacon='{"rayId":"84faf55efdf48604","version":"2024.2.0","token":"371de35475f047e2b603db31867754c5"}' crossorigin="anonymous"></script>
+</body>
+</html>
